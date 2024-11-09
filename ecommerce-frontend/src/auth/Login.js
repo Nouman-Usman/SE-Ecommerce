@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Add this line
+import config from '../config';
 
 function Login({ onLogin }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -31,13 +32,13 @@ function Login({ onLogin }) {
             return;
         }
         try {
-            await axios.post('http://localhost:5000/auth/login', formData);
+            await axios.post(`${config.backendUrl}auth/login`, formData);
             alert('Login successful!');
             onLogin();
             navigate('/products');
         } catch (error) {
-            console.error('Error during login:', error.response ? error.response.data : error.message);
-            alert('Error during login');
+            console.error('Error during login:', error);
+            setErrors({ form: 'Invalid credentials' });
         }
     };
 

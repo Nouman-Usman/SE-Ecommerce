@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import config from './config';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
@@ -10,14 +11,14 @@ function ProductList() {
     }, []);
 
     const fetchProducts = () => {
-        axios.get('http://localhost:5000/products')
+        axios.get(`${config.backendUrl}api/products`)
             .then(response => setProducts(response.data))
             .catch(error => console.error('Error fetching products:', error));
     };
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/products/${id}`);
+            await axios.delete(`${config.backendUrl}api/products/${id}`);
             alert('Product deleted successfully');
             fetchProducts();  // Refresh the list of products
         } catch (error) {

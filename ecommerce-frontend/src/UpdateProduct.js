@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import config from './config';
 
 function UpdateProduct() {
     const { id } = useParams();  // Get the product ID from the URL
@@ -14,7 +15,7 @@ function UpdateProduct() {
         // Fetch the product details based on the product ID
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/products/${id}`);
+                const response = await axios.get(`${config.backendUrl}api/products/${id}`);
                 const product = response.data;
                 setName(product.name);
                 setDescription(product.description);
@@ -31,7 +32,7 @@ function UpdateProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedProduct = { name, description, price, category };
-        await axios.put(`http://localhost:5000/products/${id}`, updatedProduct);
+        await axios.put(`${config.backendUrl}api/products/${id}`, updatedProduct);
         alert('Product updated successfully');
         navigate('/products');  // Redirect back to the product list page
     };
