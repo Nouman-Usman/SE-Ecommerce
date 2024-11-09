@@ -1,0 +1,38 @@
+
+.update-product {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-product h2 {
+    margin-bottom: 20px;
+}
+
+.update-product form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.update-product form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.update-product form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-product form button:hover {
+    background-color: #0056b3;
+}
