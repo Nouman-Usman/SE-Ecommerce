@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Container, TextField, Button, Typography, Link, Box } from '@mui/material'; // Import Material-UI components
 import './Signup.css'; // Import the CSS file for additional styling
+import config from '../config'; // Import the config file
 
 function Signup({ onLogin }) {
     const [formData, setFormData] = useState({ username: '', email: '', password: '' });
@@ -15,7 +16,7 @@ function Signup({ onLogin }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/auth/signup', formData);
+            await axios.post(`${config.backendUrl}auth/signup`, formData);
             alert('Signup successful!');
             navigate('/login');
         } catch (error) {
