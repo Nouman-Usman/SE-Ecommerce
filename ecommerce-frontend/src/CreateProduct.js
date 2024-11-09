@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import config from './config';
 
 function CreateProduct() {
     const [product, setProduct] = useState({ name: '', price: '', description: '', category: '' });
@@ -8,7 +9,7 @@ function CreateProduct() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/products', product);
+        await axios.post(`${config.backendUrl}products`, product);
         alert('Product created');
     };
 
