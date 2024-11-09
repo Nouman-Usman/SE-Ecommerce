@@ -36,10 +36,7 @@ function ProductList() {
                             <h3>{product.name}</h3>
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
-                            <Link to={{
-                                pathname: `/update-product/${product._id}`,
-                                state: { product }
-                            }}>
+                            <Link to={`/update-product/${product._id}`}>
                                 <button>Edit</button>
                             </Link>
                             <button onClick={() => handleDelete(product._id)}>Delete</button>

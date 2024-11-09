@@ -9,8 +9,12 @@ function CreateProduct() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post(`${config.backendUrl}products`, product);
-        alert('Product created');
+        try {
+            await axios.post(`${config.backendUrl}products`, product);
+            alert('Product created');
+        } catch (error) {
+            console.error('Error creating product:', error);
+        }
     };
 
     return (

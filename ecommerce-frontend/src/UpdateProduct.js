@@ -15,7 +15,7 @@ function UpdateProduct() {
         // Fetch the product details based on the product ID
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`${config.backendUrl}api/products/${id}`);
+                const response = await axios.get(`${config.backendUrl}products/${id}`);
                 const product = response.data;
                 setName(product.name);
                 setDescription(product.description);
@@ -32,9 +32,13 @@ function UpdateProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedProduct = { name, description, price, category };
-        await axios.put(`${config.backendUrl}api/products/${id}`, updatedProduct);
-        alert('Product updated successfully');
-        navigate('/products');  // Redirect back to the product list page
+        try {
+            await axios.put(`${config.backendUrl}products/${id}`, updatedProduct);
+            alert('Product updated successfully');
+            navigate('/products');  // Redirect back to the product list page
+        } catch (error) {
+            console.error('Error updating product:', error);
+        }
     };
 
     return (
