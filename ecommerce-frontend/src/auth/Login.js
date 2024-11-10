@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Add this line
 import config from '../config';
+import { Container, TextField, Button, Typography, Box, Paper } from '@mui/material'; // Import Material-UI components
+import './Login.css'; // Import the CSS file for additional styling
 
 function Login({ onLogin }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -43,30 +44,48 @@ function Login({ onLogin }) {
     };
 
     return (
-        <div className="login-container"> 
-            <form onSubmit={handleSubmit} className="login-form">
-                <h2>Login</h2> 
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Email"
-                    className="login-input"
-                />
-                {errors.email && <span className="error-text">{errors.email}</span>}
-                <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Password"
-                    className="login-input"
-                />
-                {errors.password && <span className="error-text">{errors.password}</span>}
-                <button type="submit" className="login-button">Login</button>
-            </form>
-        </div> 
+        <Container maxWidth="xs" className="login-container">
+            <Paper elevation={3} className="login-paper">
+                <Box className="login-form" component="form" onSubmit={handleSubmit}>
+                    <Typography variant="h4" component="h2" gutterBottom>
+                        Login
+                    </Typography>
+                    <TextField
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        label="Email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        error={!!errors.email}
+                        helperText={errors.email}
+                    />
+                    <TextField
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        label="Password"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        error={!!errors.password}
+                        helperText={errors.password}
+                    />
+                    {errors.form && <Typography color="error">{errors.form}</Typography>}
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        className="login-button"
+                    >
+                        Login
+                    </Button>
+                </Box>
+            </Paper>
+        </Container>
     );
 }
 
