@@ -1,18 +1,21 @@
-
 .create-product {
     background-color: white;
     padding: 20px;
-    margin: 20px 0;
+    margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
 }
 
 .create-product input {
     width: 100%;
     padding: 8px;
+    margin: 0 auto;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    max-width: 300px;
+    display: block;
 }
 
 .create-product button {
@@ -22,8 +25,22 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
 }
 
 .create-product button:hover {
     background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .create-product {
+        padding: 10px;
+    }
+
+    .create-product input, .create-product button {
+        max-width: 100%;
+    }
 }
