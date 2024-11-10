@@ -20,3 +20,12 @@
 .login-button {
     margin-top: 20px;
 }
+
+@media (max-width: 600px) {
+    .login-paper {
+        padding: 10px;
+    }
+    .login-button {
+        margin-top: 10px;
+    }
+}

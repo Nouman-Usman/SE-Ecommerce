@@ -46,3 +46,12 @@
 .product-item button:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+    .product-items {
+        flex-direction: column;
+    }
+    .product-item {
+        flex: 1 1 100%;
+    }
+}

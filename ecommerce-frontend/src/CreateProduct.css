@@ -42,5 +42,6 @@
 
     .create-product input, .create-product button {
         max-width: 100%;
+        width: 100%;
     }
 }

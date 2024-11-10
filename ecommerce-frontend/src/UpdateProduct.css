@@ -1,4 +1,3 @@
-
 .update-product {
     background-color: white;
     padding: 20px;
@@ -35,4 +34,13 @@
 
 .update-product form button:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .update-product {
+        padding: 10px;
+    }
+    .update-product form button {
+        width: 100%;
+    }
 }

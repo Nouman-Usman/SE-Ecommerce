@@ -25,3 +25,12 @@
     text-align: center;
     margin-top: 10px;
 }
+
+@media (max-width: 600px) {
+    .signup-paper {
+        padding: 10px;
+    }
+    .signup-button {
+        margin-top: 10px;
+    }
+}
