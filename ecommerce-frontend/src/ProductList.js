@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import config from './config';
+import './ProductList.css';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetchProducts();
@@ -26,24 +28,45 @@ function ProductList() {
         }
     };
 
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
-        <div className="product-list">
-            <h2>Product List</h2>
-            <div className="product-items">
-                {Array.isArray(products) ? (
-                    products.map(product => (
-                        <div key={product._id} className="product-item">
-                            <h3>{product.name}</h3>
-                            <p>{product.description}</p>
-                            <p>Price: ${product.price}</p>
-                            <Link to={`/update-product/${product._id}`}>
-                                <button>Edit</button>
-                            </Link>
-                            <button onClick={() => handleDelete(product._id)}>Delete</button>
+        <div className="product-list-container">
+            <div className="product-list-header">
+                <h2>Product List</h2>
+                <p>{products.length} Products Available</p>
+                <div className="search-bar">
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+            </div>
+            <div className="product-grid">
+                {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+                    filteredProducts.map(product => (
+                        <div key={product._id} className="product-card">
+                            <div className="product-content">
+                                <h3>{product.name}</h3>
+                                <p className="description">{product.description}</p>
+                                <p className="price">${product.price}</p>
+                            </div>
+                            <div className="product-actions">
+                                <Link to={`/update-product/${product._id}`}>
+                                    <button className="edit-btn">Edit</button>
+                                </Link>
+                                <button className="delete-btn" onClick={() => handleDelete(product._id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     ))
                 ) : (
-                    <p>No products available</p>
+                    <p className="no-products">No products found</p>
                 )}
             </div>
         </div>

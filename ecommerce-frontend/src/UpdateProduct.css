@@ -1,46 +1,121 @@
-.update-product {
-    background-color: white;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.update-product-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 20px;
 }
 
-.update-product h2 {
-    margin-bottom: 20px;
+.update-product-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.update-product form label {
+.update-product-card h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
 }
 
-.update-product form input {
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-.update-product form button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.update-product form button:hover {
-    background-color: #0056b3;
+button.primary {
+    background-color: #3498db;
+    color: white;
+}
+
+button.secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button.primary:hover {
+    background-color: #2980b9;
+}
+
+button.secondary:hover {
+    background-color: #d0d0d0;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.error {
+    color: #e74c3c;
 }
 
 @media (max-width: 600px) {
-    .update-product {
-        padding: 10px;
+    .form-row {
+        grid-template-columns: 1fr;
     }
-    .update-product form button {
-        width: 100%;
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .update-product-card {
+        padding: 1rem;
     }
 }

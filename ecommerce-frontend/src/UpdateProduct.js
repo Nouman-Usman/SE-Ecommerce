@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
+import './UpdateProduct.css';
 
 function UpdateProduct() {
     const { id } = useParams();  // Get the product ID from the URL
@@ -10,6 +11,8 @@ function UpdateProduct() {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         // Fetch the product details based on the product ID
@@ -22,7 +25,9 @@ function UpdateProduct() {
                 setPrice(product.price);
                 setCategory(product.category);
             } catch (error) {
-                console.error('Error fetching product:', error);
+                setError('Failed to load product details');
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -41,28 +46,69 @@ function UpdateProduct() {
         }
     };
 
+    if (isLoading) return <div className="loading">Loading product details...</div>;
+    if (error) return <div className="error">{error}</div>;
+
     return (
-        <div className="update-product">
-            <h2>Update Product</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-                </label>
-                <label>
-                    Description:
-                    <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                </label>
-                <label>
-                    Price:
-                    <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
-                </label>
-                <label>
-                    Category:
-                    <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
-                </label>
-                <button type="submit">Update Product</button>
-            </form>
+        <div className="update-product-container">
+            <div className="update-product-card">
+                <h2>Update Product</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="name">Product Name</label>
+                        <input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            placeholder="Enter product name"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="description">Description</label>
+                        <textarea
+                            id="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                            placeholder="Enter product description"
+                        />
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="price">Price</label>
+                            <input
+                                id="price"
+                                type="number"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                required
+                                placeholder="Enter price"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="category">Category</label>
+                            <input
+                                id="category"
+                                type="text"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                required
+                                placeholder="Enter category"
+                            />
+                        </div>
+                    </div>
+                    <div className="button-group">
+                        <button type="button" className="secondary" onClick={() => navigate('/products')}>
+                            Cancel
+                        </button>
+                        <button type="submit" className="primary">
+                            Update Product
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

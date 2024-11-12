@@ -17,31 +17,31 @@ function Navbar({ isAuthenticated, onLogout }) {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link to="/">E-Shop</Link>
+                <Link to="/">🛍️ E-Shop</Link>
             </div>
             <button className="navbar-toggle" onClick={toggleMenu}>
-                ☰
+                {isOpen ? '✕' : '☰'}
             </button>
             <ul className={`navbar-links ${isOpen ? 'open' : ''}`}>
                 <li>
-                    <Link to="/products">Products</Link>
+                    <Link to="/products">🏪 Products</Link>
                 </li>
                 {isAuthenticated ? (
                     <>
                         <li>
-                            <Link to="/create-product">Create Product</Link>
+                            <Link to="/create-product">➕ Create Product</Link>
                         </li>
                         <li>
-                            <button onClick={handleLogout}>Logout</button>
+                            <button onClick={handleLogout}>🚪 Logout</button>
                         </li>
                     </>
                 ) : (
                     <>
                         <li>
-                            <Link to="/signup">Signup</Link>
+                            <Link to="/signup">✨ Signup</Link>
                         </li>
                         <li>
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">🔑 Login</Link>
                         </li>
                     </>
                 )}

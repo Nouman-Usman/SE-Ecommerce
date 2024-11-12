@@ -1,36 +1,72 @@
 .signup-container {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px); /* Adjust height to account for navbar */
-    margin-top: 60px; /* Adjust margin to account for navbar */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
 }
 
 .signup-paper {
-    padding: 20px;
+    padding: 40px;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+}
+
+.signup-brand {
+    text-align: center;
+    margin-bottom: 32px;
 }
 
 .signup-form {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .signup-button {
-    margin-top: 20px;
+    margin-top: 24px !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    text-transform: none !important;
+    transition: transform 0.2s ease !important;
+}
+
+.signup-button:hover {
+    transform: translateY(-2px);
 }
 
 .signup-footer {
+    margin-top: 32px;
     text-align: center;
-    margin-top: 10px;
+}
+
+.login-link {
+    color: #1976d2;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.login-link:hover {
+    color: #1565c0;
+    text-decoration: underline;
 }
 
 @media (max-width: 600px) {
     .signup-paper {
-        padding: 10px;
+        padding: 24px;
+        margin: 16px;
     }
-    .signup-button {
-        margin-top: 10px;
+
+    .signup-brand {
+        margin-bottom: 24px;
+    }
+
+    .signup-form {
+        gap: 16px;
     }
 }
